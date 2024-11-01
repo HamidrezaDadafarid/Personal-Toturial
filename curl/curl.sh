@@ -1,34 +1,72 @@
 #!/usr/bin/bash
+# Specifies the shell to use for executing the script
 
-# Exit immediately if a command exits with a non-zero status, treat unset variables as an error, and fail if any command in a pipeline fails.
+# Sets strict error handling:
+# -e: Exit immediately if a command exits with a non-zero status
+# -u: Treat unset variables as an error and exit immediately
+# -o pipefail: Return the exit status of the last command in the pipeline that failed
 set -e -u -o pipefail
 
-# Make a simple GET request to https://httpbin.org/get and print the response to the console.
-curl https://httpbin.org/get
+# Fetches all posts from the placeholder API
+curl https://jsonplaceholder.typicode.com/posts
 
-# Make a GET request to https://httpbin.org/get with headers included in the response.
-curl -i https://httpbin.org/get
+# Fetches the post with ID 3 from the placeholder API
+curl https://jsonplaceholder.typicode.com/posts/3
 
-# Make a GET request with verbose output, showing details like request/response headers, connection status, etc.
-curl -v https://httpbin.org/get
+# Fetches the post with ID 21 and includes the HTTP headers in the response
+curl -i https://jsonplaceholder.typicode.com/posts/21
 
-# Make a silent GET request and save the output to a file named output.json.
-curl -s -o output.json https://httpbin.org/get
+# Retrieves only the HTTP headers for post ID 21
+curl --head https://jsonplaceholder.typicode.com/posts/21
+# Another way to retrieve only HTTP headers for all posts
+curl -I https://jsonplaceholder.typicode.com/posts
 
-# Similar to above, silently save the response to output.json using output redirection.
+# Displays the detailed process of the request, including headers and response
+curl -v https://jsonplaceholder.typicode.com/posts
+
+# Downloads the response of all posts to a file named output.txt
+curl -o output.txt https://jsonplaceholder.typicode.com/posts
+
+# Downloads the response of all posts to a file named outout.txt (identical to -o option)
+curl --output output.txt https://jsonplaceholder.typicode.com/posts
+
+# Another way to redirect the output to output.txt
+curl https://jsonplaceholder.typicode.com/posts > output.txt
+
+# Runs curl silently (no output to terminal), saves response to output.txt
+curl -s -o output.txt https://jsonplaceholder.typicode.com/posts
+
+# Runs curl silently and saves the response to output.json
 curl -s https://httpbin.org/get > output.json
 
-# Send a POST request with JSON data and display the server's response.
-curl -d '{"key1": "value1"}' -X POST https://httpbin.org/post
+# Downloads the file using the same filename as it exists on the server (e.g., 'posts')
+curl -O https://jsonplaceholder.typicode.com/posts
 
-# Send a POST request with JSON data, specifying the Content-Type as application/json for correct handling on the server.
-curl -d '{"key1": "value1"}' -X POST -H 'Content-Type: application/json' https://httpbin.org/post
+# Downloads the file with a limited download speed of 1000 bytes per second
+curl -O --limit-rate 1000B https://jsonplaceholder.typicode.com/posts
 
-# Send a GET request with an Authorization header (replace YOUR_TOKEN with a valid token).
-curl -H 'Authorization: Bearer YOUR_TOKEN' https://httpbin.org/anything
+# Sends a POST request with JSON data to create a new post (the dafault methood if we dont specify it is POST when we are sending data)
+curl -d '{"title": "title1", "body": "body1"}' https://jsonplaceholder.typicode.com/posts
+# Alternative way to send the same POST request
+curl --data '{"title": "title1", "body": "body1"}' -X POST https://jsonplaceholder.typicode.com/posts
 
-# Send a GET request that automatically follows up to 5 redirects, expecting an HTML response.
-curl -L -X GET https://httpbin.org/redirect/5 -H 'accept: text/html'
+# Sends a PUT request to update the title of the post with ID 3
+curl -d '{"title": "new-title"}' -X PUT https://jsonplaceholder.typicode.com/posts/3
 
-# Similar to the above, but with response headers included.
-curl -i -L -X GET https://httpbin.org/redirect/5 -H 'accept: text/html'
+# Sends a PUT request with JSON data and specifies the content type as application/json
+curl -d '{"title": "new-title"}' -X PUT -H 'Content-Type: application/json' https://jsonplaceholder.typicode.com/posts/3
+
+# Sends a DELETE request to delete the post with ID 3
+curl -X DELETE https://jsonplaceholder.typicode.com/posts/3
+
+# Authenticates with a username and password (HTTP Basic Auth) to access the resource
+curl -u username:password https://example.com
+
+# Sends an Authorization header with a bearer token for authentication
+curl -H 'Authorization: Bearer YOUR_TOKEN' https://example.com
+
+# Follows redirects to reach the final destination (useful when the URL redirects to another URL)
+curl -L http://google.com
+
+# Follows up to 5 redirects and includes headers in the output for each request/response pair
+curl -i -L https://httpbin.org/redirect/5

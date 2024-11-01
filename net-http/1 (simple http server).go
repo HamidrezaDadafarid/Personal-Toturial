@@ -9,7 +9,9 @@ import (
 // It takes two parameters: w, an http.ResponseWriter to write the response,
 // and req, the incoming http request.
 func hello(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "hello\n")
+	fmt.Fprintf(w, "Hello ")
+	// we can call Write() method on w too.
+	w.Write([]byte("World\n"))
 }
 
 // headers is a handler function that writes each header of the incoming

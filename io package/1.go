@@ -101,6 +101,7 @@ func main() {
 	// The file object returned by os.Open implements both the io.Reader and io.Seeker interfaces. This is because *os.File provides implementations for both Read and Seek methods, making it compatible with both interfaces.
 	seeker := reader.(io.Seeker)
 
+	// Reading all the contect of a file and storing it in a buffer is not efficient becuase you have to store that buffer in the memory anf if the file size is massive, it will not be efficient at all.
 	// Seek to the beginning of the file and read all contents again
 	seeker.Seek(0, io.SeekStart)
 	buffer, err = io.ReadAll(reader)

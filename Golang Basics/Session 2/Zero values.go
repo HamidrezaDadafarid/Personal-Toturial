@@ -53,6 +53,13 @@ func main() {
 	fmt.Println(v16 == nil)
 	fmt.Println(v17 == nil)
 
-	// structs -->
+	// structs --> For a struct type, if you declare a variable without explicitly initializing it, it will be assigned the zero value for its type. If the struct contains fields of numeric types, they will be set to zero values, and if it contains reference types (like slices or maps), those will be set to their respective nil values.
+	type Person struct {
+		firstName string
+		lastName  string
+		age       uint
+	}
+	var p Person
+	fmt.Println(p.age)
 
 }

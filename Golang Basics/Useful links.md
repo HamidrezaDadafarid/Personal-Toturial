@@ -21,3 +21,5 @@
 ### [Inside the Go Build Cache and the Incremental Build Mechanism](https://medium.com/cloud-native-daily/inside-the-go-build-cache-and-the-incremental-build-mechanism-52f0da94f457#:~:text=The%20Go%20build%20cache%20is,the%20cache%20directory%20is%20~%2F.)
 
 ### [Understanding memory allocation in Go using Go pointers](https://dev.to/amaraiheanacho/understanding-memory-allocation-in-go-using-go-pointers-5dcp)
+
+### [Exploring Zero Values in Go](https://medium.com/@briankworld/exploring-zero-values-in-go-3a812d22e07e#:~:text=For%20a%20struct%20type%2C%20if,to%20their%20respective%20nil%20values.)

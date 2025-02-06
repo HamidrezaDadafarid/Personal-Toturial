@@ -41,8 +41,8 @@ func main() {
 	p3.age = 22
 
 	// p4 is a pointer to a Person and will initially hold the zero values for its fields
-	// p4 := new(Person) // p4 = &Person{}
+	p4 := new(Person) // p4 = &Person{}
 
 	// A nil pointer to a Person struct. You would need to assign it a valid reference (either through new(Person) or by assigning it the address of an existing Person).
-	// var p5 *Person
+	var p5 *Person
 }

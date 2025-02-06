@@ -19,10 +19,10 @@ func main() {
 	v1 = 100
 	fmt.Println(*p, v1)
 
-	// var p1 *person // zero value (nil)
+	var p1 *person // zero value (nil)
 
 	// panic!!!
-	// fmt.Println(p1.firstName) // equal to (*p1).firstName
+	fmt.Println(p1.firstName) // equal to (*p1).firstName
 
 	// not panic
 	p2 := new(person) // equal tp &person{}

@@ -1,4 +1,4 @@
-# Useful Links for Golang
+# Useful Links for Basic Golang
 
 ### [Go 101 (an up-to-date knowledge base for Go programming self learning)](https://go101.org/)
 

@@ -1,0 +1,23 @@
+# DEL
+Removes the specified keys. A key is ignored if it does not exist.
+
+## Syntax
+```
+DEL key [key ...]
+```
+
+## Time Complexity
+O(N) where N is the number of keys that will be removed. When a key to remove holds a value other than a string, the individual complexity for this key is O(M) where M is the number of elements in the list, set, sorted set or hash. Removing a single key that holds a string value is O(1).
+
+## Return Value
+Integer reply: the number of keys that were removed.
+
+## Examples
+```bash
+> SET key1 "Hello"
+"OK"
+> SET key2 "World"
+"OK"
+> DEL key1 key2 key3
+(integer) 2
+```

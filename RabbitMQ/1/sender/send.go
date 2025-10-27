@@ -76,7 +76,7 @@ func main() {
 	failOnError(err, "Failed to declare a queue")
 
 	// Message body to publish to the queue
-	body := fmt.Sprintf("Hello RabbitMQ!")
+	body := "Hello RabbitMQ!"
 
 	// Publish a message to the queue
 	publishMessage(ch, queueName, body)
